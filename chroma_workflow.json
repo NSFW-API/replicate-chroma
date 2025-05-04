@@ -36,8 +36,8 @@
   },
   "6": {
     "inputs": {
-      "width": 1024,
-      "height": 1024,
+      "width": 512,
+      "height": 512,
       "batch_size": 1
     },
     "class_type": "EmptyLatentImage",
@@ -49,20 +49,20 @@
     "inputs": {
       "seed": 569737278829342,
       "steps": 30,
-      "cfg": 3.5,
-      "sampler_name": "euler",
-      "scheduler": "beta",
+      "cfg": 3.0,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "normal",
       "denoise": 1,
       "model": [
         "10",
         0
       ],
       "positive": [
-        "4",
+        "12",
         0
       ],
       "negative": [
-        "5",
+        "13",
         0
       ],
       "latent_image": [
@@ -105,24 +105,32 @@
     }
   },
   "10": {
+    "class_type": "ChromaDiffusionLoader",
+    "_meta": { "title": "Load Chroma UNet" },
     "inputs": {
       "unet_name": "chroma-unlocked-v27.safetensors",
-      "weight_dtype": "default"
-    },
-    "class_type": "UNETLoader",
-    "_meta": {
-      "title": "Load Diffusion Model"
+      "quant_mode": "bf16"
     }
   },
   "11": {
     "inputs": {
-      "clip_name": "t5xxl_fp8_e4m3fn.safetensors",
-      "type": "chroma",
+      "clip_name": "t5xxl_fp16.safetensors",
+      "type": "stable_diffusion",
       "device": "default"
     },
     "class_type": "CLIPLoader",
     "_meta": {
       "title": "Load CLIP"
     }
+  },
+  "12": {
+    "class_type": "ChromaPaddingRemoval",
+    "_meta": { "title": "Chroma Padding Removal (Pos)" },
+    "inputs": { "conditioning": ["4", 0] }
+  },
+  "13": {
+    "class_type": "ChromaPaddingRemoval",
+    "_meta": { "title": "Chroma Padding Removal (Neg)" },
+    "inputs": { "conditioning": ["5", 0] }
   }
 }

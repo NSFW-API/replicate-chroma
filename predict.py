@@ -128,12 +128,12 @@ class Predictor(BasePredictor):
             self,
             prompt: str = Input(description="Main text prompt."),
             negative_prompt: str = Input(default="", description="Optional negative."),
-            width: int = Input(default=1024, ge=64, le=1536),
-            height: int = Input(default=1024, ge=64, le=1536),
+            width: int = Input(default=512, ge=64, le=1536),
+            height: int = Input(default=512, ge=64, le=1536),
             steps: int = Input(default=30, ge=1, le=150),
-            cfg: float = Input(default=3.5, ge=1.0, le=20.0),
-            sampler_name: str = Input(default="euler", choices=["euler", "euler_a", "dpmpp_2m"]),
-            scheduler: str = Input(default="beta", choices=["beta", "normal"]),
+            cfg: float = Input(default=3.0, ge=1.0, le=20.0),
+            sampler_name: str = Input(default="euler_ancestral", choices=["euler", "euler_ancestral", "heun", "dpmpp_2s_ancestral", "uni_pc"]),
+            scheduler: str = Input(default="normal", choices=["beta", "normal"]),
             seed: int = Input(default=0, description="0 = random"),
     ) -> List[Path]:
 
