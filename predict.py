@@ -27,13 +27,13 @@ class Predictor(BasePredictor):
         models_dir = "ComfyUI/models/checkpoints"
         os.makedirs(models_dir, exist_ok=True)
 
-        ckpt_path = os.path.join(models_dir, "chroma-unlocked-v27.safetensors")
+        ckpt_path = os.path.join(models_dir, "chroma-unlocked-v28.safetensors")
         if not os.path.exists(ckpt_path):
             print(f"Downloading checkpoint to {ckpt_path}...")
             try:
                 diff_dir = "ComfyUI/models/diffusion_models"  # where FluxMod expects it
                 helper_ckpt_dir = "checkpoints"  # where handle_weights looks
-                ckpt_file = "chroma-unlocked-v27.safetensors"
+                ckpt_file = "chroma-unlocked-v28.safetensors"
 
                 os.makedirs(diff_dir, exist_ok=True)
                 os.makedirs(helper_ckpt_dir, exist_ok=True)
@@ -44,7 +44,7 @@ class Predictor(BasePredictor):
                 if not os.path.exists(ckpt_path):
                     subprocess.check_call([
                         "wget", "--no-verbose",
-                        "https://huggingface.co/lodestones/Chroma/resolve/main/chroma-unlocked-v27.safetensors",
+                        "https://huggingface.co/lodestones/Chroma/resolve/main/chroma-unlocked-v28.safetensors",
                         "-O", ckpt_path
                     ])
 
