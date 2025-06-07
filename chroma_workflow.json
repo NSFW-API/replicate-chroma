@@ -108,7 +108,7 @@
     "class_type": "ChromaDiffusionLoader",
     "_meta": { "title": "Load Chroma UNet" },
     "inputs": {
-      "unet_name": "chroma-unlocked-v28.safetensors",
+      "unet_name": "chroma-unlocked-v35-detail-calibrated.safetensors",
       "quant_mode": "bf16"
     }
   },

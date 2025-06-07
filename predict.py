@@ -27,13 +27,13 @@ class Predictor(BasePredictor):
         models_dir = "ComfyUI/models/checkpoints"
         os.makedirs(models_dir, exist_ok=True)
 
-        ckpt_path = os.path.join(models_dir, "chroma-unlocked-v28.safetensors")
+        ckpt_path = os.path.join(models_dir, "chroma-unlocked-v35-detail-calibrated.safetensors")
         if not os.path.exists(ckpt_path):
             print(f"Downloading checkpoint to {ckpt_path}...")
             try:
                 diff_dir = "ComfyUI/models/diffusion_models"  # where FluxMod expects it
                 helper_ckpt_dir = "checkpoints"  # where handle_weights looks
-                ckpt_file = "chroma-unlocked-v28.safetensors"
+                ckpt_file = "chroma-unlocked-v35-detail-calibrated.safetensors"
 
                 os.makedirs(diff_dir, exist_ok=True)
                 os.makedirs(helper_ckpt_dir, exist_ok=True)
@@ -44,7 +44,7 @@ class Predictor(BasePredictor):
                 if not os.path.exists(ckpt_path):
                     subprocess.check_call([
                         "wget", "--no-verbose",
-                        "https://huggingface.co/lodestones/Chroma/resolve/main/chroma-unlocked-v28.safetensors",
+                        "https://huggingface.co/lodestones/Chroma/resolve/main/chroma-unlocked-v35-detail-calibrated.safetensors",
                         "-O", ckpt_path
                     ])
 
@@ -128,12 +128,12 @@ class Predictor(BasePredictor):
             self,
             prompt: str = Input(description="Main text prompt."),
             negative_prompt: str = Input(default="", description="Optional negative."),
-            width: int = Input(default=512, ge=64, le=1536),
-            height: int = Input(default=512, ge=64, le=1536),
-            steps: int = Input(default=30, ge=1, le=150),
+            width: int = Input(default=1024, ge=64, le=1536),
+            height: int = Input(default=1024, ge=64, le=1536),
+            steps: int = Input(default=40, ge=1, le=150),
             cfg: float = Input(default=3.0, ge=1.0, le=20.0),
             sampler_name: str = Input(default="euler_ancestral", choices=["euler", "euler_ancestral", "heun", "dpmpp_2s_ancestral", "uni_pc"]),
-            scheduler: str = Input(default="normal", choices=["beta", "normal"]),
+            scheduler: str = Input(default="beta", choices=["beta", "normal"]),
             seed: int = Input(default=0, description="0 = random"),
     ) -> List[Path]:
 

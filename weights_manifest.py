@@ -15,7 +15,7 @@ MODELS_PATH = config["MODELS_PATH"]
 # Create user weights manifest for Chroma and related models
 CHROMA_USER_MANIFEST = {
     "CHECKPOINTS": [
-        "chroma-unlocked-v28.safetensors",
+        "chroma-unlocked-v35-detail-calibrated.safetensors",
     ],
     "CLIP": [
         "t5xxl_fp16.safetensors",
@@ -159,8 +159,8 @@ class WeightsManifest:
                 update_weights_map(map)
 
         # Add special Chroma mapping
-        weights_map["chroma-unlocked-v28.safetensors"] = {
-            "url": "https://huggingface.co/lodestones/Chroma/resolve/main/chroma-unlocked-v28.safetensors",
+        weights_map["chroma-unlocked-v35-detail-calibrated.safetensors"] = {
+            "url": "https://huggingface.co/lodestones/Chroma/resolve/main/chroma-unlocked-v35-detail-calibrated.safetensors",
             "dest": "checkpoints",
         }
 
